@@ -1,24 +1,6 @@
 version: '3'
 
 services:
-  backend:
-    container_name: 'backend'
-    build:
-      context: backend
-      dockerfile: Dockerfile
-    env_file: ./backend/.env
-    restart: on-failure
-    ports:
-      - '4000:4000'
-    depends_on:
-      - postgres
-
-  postgres:
-    container_name: 'database'
-    image: postgres:12.12-alpine
-    restart: on-failure
-    env_file: ./backend/.env
-
   frontend:
     container_name: 'frontend'
     build:
@@ -28,3 +10,26 @@ services:
       - '8081:80'
     depends_on:
       - backend
+  backend:
+    container_name: 'backend'
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    env_file: ./backend/.env
+    restart: on-failure
+    ports:
+      - '4000:3000'
+    environment:
+      DB_HOST: host.docker.internal
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: 'localhost'
+    image: postgres:12.12-alpine
+    restart: on-failure
+    ports: 
+      - 5432:5432
+    env_file: ./backend/.env
+
+  
