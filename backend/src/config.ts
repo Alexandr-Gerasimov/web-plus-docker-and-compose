@@ -10,13 +10,3 @@ export default () => ({
   },
   jwt_secret: process.env.JWT_SECRET || 'secret-key',
 });
-
-/*type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'student',
-      password: 'student',
-      database: 'nest_project',
-      entities: [Offer, User, Wish, Wishlist],
-      synchronize: true,
-*/
