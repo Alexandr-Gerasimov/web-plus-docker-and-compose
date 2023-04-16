@@ -8,8 +8,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.use(helmet());
-  await app.listen(config().port, () => {
-    console.log(`Server is listening on port: ${config().port}`);
-  });
+  await app.listen(3000);
 }
 bootstrap();
